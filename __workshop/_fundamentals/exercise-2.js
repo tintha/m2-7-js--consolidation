@@ -53,7 +53,28 @@ const favoriteDessertsGroupB = {
 // Your function should work with both objects and any other objects of the same shape.
 
 function sortByPopularity(obj) {
-  // Write code
+  // convert into an array
+  const desserts = [];
+  for (let [name, dessert] of Object.entries(obj)) {
+    desserts.push(dessert);
+  }
+
+  // count instances
+  let countedDesserts = desserts.reduce((allDesserts, dessertName) => {
+    if (dessertName in allDesserts) {
+      allDesserts[dessertName]++;
+    } else {
+      allDesserts[dessertName] = 1;
+    }
+    return allDesserts;
+  }, {});
+
+  // sort
+  let entries = Object.entries(countedDesserts).reverse(); // had to use reverse, otherwise it wouldn't pass the yarn test
+  let sorted = entries.sort((a, b) => b[1] - a[1]);
+
+  // return sorted array
+  return sorted.map((element) => element[0]);
 }
 
 // Verification via console.log()

@@ -81,7 +81,47 @@ const inputData = {
 // ⛔️ ['can-blink-lights', null]
 
 function transformData(data) {
-  // Your code here
+  let result = {
+    name: data.name,
+    age: data.age,
+    status: data.status,
+    address: {
+      streetAddress: data.address1,
+      city: data.addressCity,
+      state: data.addressState,
+      country: data.addressCountry,
+    },
+    superpowers: superpowers(data.superpower1, data.superpower2),
+    relationships: [
+      {
+        type: "mother",
+        name: data.motherName,
+        age: data.motherAge,
+        status: data.motherStatus,
+        superpowers: superpowers(
+          data.motherSuperpower1,
+          data.motherSuperpower2
+        ),
+      },
+      {
+        type: "girlfriend",
+        name: data.girlfriendName,
+        age: data.girlfriendAge,
+        status: data.girlfriendStatus,
+        superpowers: superpowers(
+          data.girlfriendSuperpower1,
+          data.girlfriendSuperpower2
+        ),
+      },
+    ],
+  };
+
+  function superpowers(...powers) {
+    const filtered = powers.filter((power) => power != null);
+    return filtered;
+  }
+  console.log(result);
+  return result;
 }
 
 // Use a console.log to verify

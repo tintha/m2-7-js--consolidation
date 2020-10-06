@@ -61,7 +61,21 @@ const favoriteDessertsGroupB = {
 // }
 
 function groupByValue(obj) {
-  // do something
+  // convert to array
+  const desserts = Object.entries(obj);
+
+  const grouped = desserts.reduce((acc, person) => {
+    let dessert = person[1]; // ex.: dessert = pie...
+    if (!acc[dessert]) {
+      // ex.: if pie is not in the acc object, set pie = [];
+      acc[dessert] = [];
+    }
+    // pie.push(person's name)
+    acc[dessert].push(person[0]);
+    return acc;
+  }, {});
+
+  return grouped;
 }
 
 // Verification via console.log()
